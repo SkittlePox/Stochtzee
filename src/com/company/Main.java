@@ -61,10 +61,11 @@ public class Main {
         upperOdds[num - 1] = Math.round(5 / Math.pow(6, 5 - non) * 10000.0) / 100.0;
         if (rollsLeft == 2) {
             upperOdds[num - 1] *= 2;
-            if (non <= 2)
-                upperOdds[num - 1] += Math.round(125 / Math.pow(6, 7 - non) * 10000.0) / 100.0;   //A switch statement could clear this up
-            if (non <= 1) upperOdds[num - 1] += Math.round(625 / Math.pow(6, 8 - non) * 10000.0) / 100.0;
-            if (non == 0) upperOdds[num - 1] += Math.round(3125 / Math.pow(6, 9 - non) * 10000.0) / 100.0;
+            switch(non) {
+                case 0: upperOdds[num - 1] += Math.round(3125 / Math.pow(6, 9 - non) * 10000.0) / 100.0;
+                case 1: upperOdds[num - 1] += Math.round(625 / Math.pow(6, 8 - non) * 10000.0) / 100.0;
+                case 2: upperOdds[num - 1] += Math.round(125 / Math.pow(6, 7 - non) * 10000.0) / 100.0;
+            }
         }
         if (non >= 4) upperOdds[num - 1] = 100.00;
         System.out.println(num + " = " + upperOdds[num - 1] + "% chance");
@@ -97,9 +98,10 @@ public class Main {
                 lowerOdds[1] = Math.round(5 / Math.pow(6, 5 - non1) * 10000.0) / 100.0;
                 if (rollsLeft == 2) {
                     lowerOdds[1] *= 2;
-                    if (non1 <= 2)
-                        lowerOdds[1] += Math.round(125 / Math.pow(6, 7 - non1) * 10000.0) / 100.0;   //A switch statement could clear this up
-                    if (non1 == 1) lowerOdds[1] += Math.round(625 / Math.pow(6, 8 - non1) * 10000.0) / 100.0;
+                    switch(non1) {
+                        case 1: lowerOdds[1] += Math.round(625 / Math.pow(6, 8 - non1) * 10000.0) / 100.0;
+                        case 2: lowerOdds[1] += Math.round(125 / Math.pow(6, 7 - non1) * 10000.0) / 100.0;
+                    }
                 }
                 if (non1 >= 4) lowerOdds[1] = 100.00;
                 System.out.println(lower[num] + " = " + lowerOdds[num] + "% chance");
